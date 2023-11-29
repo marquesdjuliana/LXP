@@ -1,4 +1,4 @@
-# Learning Platform
+# LXP - Learning Experience Platform
 
 A Plataforma de Aprendizado é uma plataforma simplificada de Experiência de Aprendizado (LXP) que tem como objetivo facilitar a interação entre alunos e professores, permitindo o registro de cursos, perguntas de alunos e respostas de professores.
 

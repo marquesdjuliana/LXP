@@ -1,0 +1,28 @@
+{
+  "name": "lxp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "install:front": "cd ./app/frontend && npm install",
+    "install:back": "cd ./app/backend && npm install",
+    "install:apps": "npm run install:front && npm run install:back",
+    "test": "env $(cat ./app/backend/.env) jest -i --forceExit --verbose",
+    "test:browser": "SHOW_BROWSER=true npm test",
+    "test:debug": "DEBUG=true npm test",
+    "compose:up": "cd app && docker-compose up -d --build",
+    "compose:down": "cd app && docker-compose down --remove-orphans",
+    "logs": "cd app && docker-compose logs -f"
+  },
+  "author": "Juliana Marques",
+  "devDependencies": {
+    "axios": "0.26.0",
+    "mysql2": "2.3.3",
+    "nyc": "15.1.0",
+    "sequelize": "6.25.5",
+    "sequelize-cli": "6.4.1"
+  },
+  "dependencies": {
+    "jsonwebtoken": "8.5.1"
+  }
+}
