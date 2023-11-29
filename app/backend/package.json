@@ -1,0 +1,26 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "Backend LXP",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha ./src/tests/*.test.js -t 10000 --exit",
+    "test:coverage": "nyc npm run test",
+    "test:coverage:json": "nyc --reporter=json-summary npm run test",
+    "db:reset": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all",
+    "prestart": "npm run db:reset",
+    "dev": "nodemon server.js",
+    "lint": "eslint ./src --ext .js"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.15",
+    "sequelize-cli": "6.2.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-async-errors": "3.1.1",
+    "mysql2": "2.3.3",
+    "sequelize": "6.25.5"
+  }
+}
