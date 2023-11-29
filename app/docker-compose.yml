@@ -17,19 +17,20 @@ services:
     ports:
       - 3001:3001
     working_dir: /app-backend
-    command: dev  # Ajuste conforme a necessidade do seu ambiente
+    command: dev
     volumes: 
       - ./backend/src:/app-backend/src
     depends_on:
       db:
         condition: service_healthy
     environment:
-      - APP_PORT=${API_PORT}
+      - API_PORT=${API_PORT}
       - JWT_SECRET=${JWT_SECRET}
-      - DB_USER=${MYSQL_USER}
-      - DB_PASSWORD=${MYSQL_PASSWORD}
-      - DB_HOST=${MYSQL_HOST}
-      - DB_PORT=${MYSQL_PORT}
+      - MYSQL_USER=${MYSQL_USER}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
+      - MYSQL_HOST=${MYSQL_HOST}
+      - MYSQL_PORT=${MYSQL_PORT}
+      - MYSQL_DB_NAME=${MYSQL_DB_NAME}
     healthcheck:
       test: ["CMD", "lsof", "-t", "-i:3001"]
       timeout: 10s
@@ -41,7 +42,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
+      MYSQL_ROOT_PASSWORD: password
     restart: 'always'
     healthcheck:
       test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]

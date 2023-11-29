@@ -2,15 +2,15 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "Backend LXP",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node .",
     "test": "mocha ./src/tests/*.test.js -t 10000 --exit",
     "test:coverage": "nyc npm run test",
     "test:coverage:json": "nyc --reporter=json-summary npm run test",
     "db:reset": "sequelize-cli db:drop && sequelize-cli db:create && sequelize-cli db:migrate && sequelize-cli db:seed:all",
     "prestart": "npm run db:reset",
-    "dev": "nodemon server.js",
+    "dev": "nodemon src/server.js",
     "lint": "eslint ./src --ext .js"
   },
   "devDependencies": {
