@@ -6,6 +6,13 @@ const listAllUsers = async (_req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const createUser = async (req, res) => {
+  const { body } = req;
+  const { status, data } = await userService.createUser(body);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
-  listAllUsers
+  listAllUsers,
+  createUser
 }

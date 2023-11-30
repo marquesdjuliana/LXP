@@ -5,7 +5,6 @@ const app = express();
 
 
 
-// FIX:
 app.use(express.json());
 app.use('/users', userRoute);
 app.use('/login', loginRoute);
