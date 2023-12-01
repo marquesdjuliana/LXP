@@ -1,4 +1,4 @@
-const { Course, Question, Answer } = require('../models');
+const { Course, Question } = require('../models');
 
 const listAllCourses = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
@@ -71,10 +71,22 @@ const deleteCourseById = async (id) => {
   }
 };
 
+const getAllQuestionsByCourseId = async (courseId) => {
+  const course = await Course.findByPk(courseId);
+  
+  if (!course) {
+    return { status: 'NOT_FOUND', data: { message: 'Course not found' } };
+  }
+
+  const questions = await Question.findAll({ where: { course_id: courseId } });
+  return { status: 'SUCCESSFUL', data: questions };
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
   createCourse,
   updateCourseById,
   deleteCourseById,
+  getAllQuestionsByCourseId,
 }

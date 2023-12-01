@@ -30,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
   {
     timestamps: false,
     tableName: 'questions',
+    underscored: true,
   });
 
   Question.associate = (models) => {

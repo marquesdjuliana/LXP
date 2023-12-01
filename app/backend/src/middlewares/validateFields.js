@@ -1,6 +1,7 @@
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 const { verifyFields } = require('../validations/verifyFields');
 const { userSchema, courseSchema } = require('../validations/schemas')
+const { Course } = require('../models')
 
 const validateLogin = (req, res, next) => {
   const { email, password } = req.body;
@@ -47,9 +48,25 @@ const validateCourse = (req, res, next) => {
   next();
 };
 
+const validateCourseId = async (req, res, next) => {
+  const { id } = req.params;
+
+  if (!id) {
+    return res.status(mapStatusHTTP('BAD_REQUEST')).json({ message: 'Course ID is missing' });
+  }
+
+  const course = await Course.findByPk(id);
+  if (!course) {
+    return res.status(mapStatusHTTP('NOT_FOUND')).json({ message: 'Course not found' });
+  }
+
+  next();
+};
+
 
 module.exports = {
   validateLogin,
   validateUser,
   validateCourse,
+  validateCourseId,
 };
