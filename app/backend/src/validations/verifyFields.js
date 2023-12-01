@@ -1,4 +1,3 @@
-const { Category, BlogPost } = require('../models');
 
 const verifyFields = (requiredFields, requestBody) => {
   for (let i = 0; i < requiredFields.length; i += 1) {

@@ -1,10 +1,10 @@
 const Joi = require('joi');
 
 const userSchema = Joi.object({
-  name: Joi.string().min(8),
-  role: Joi.string(),
-  email: Joi.string().email(),
-  password: Joi.string().min(6),
+  name: Joi.string().min(8).required(),
+  role: Joi.string().valid('student', 'professor').required(),
+  email: Joi.string().email().required(),
+  password: Joi.string().min(6).required(),
 });
 
 module.exports = {
