@@ -31,9 +31,18 @@ const updateCourseById = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const deleteCourseById = async (req, res) => {
+  const { id } = req.params;
+
+  const { status, data } = await courseService.deleteCourseById(id);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
+
 module.exports = {
   listAllCourses,
   getCourseById,
   createCourse,
-  updateCourseById,  
+  updateCourseById,
+  deleteCourseById,  
 }

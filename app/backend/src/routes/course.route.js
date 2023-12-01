@@ -8,5 +8,6 @@ route.get('/', courseController.listAllCourses);
 route.get('/:id', courseController.getCourseById);
 route.post('/', validateCourse, courseController.createCourse);
 route.put('/:id', validateCourse, courseController.updateCourseById);
+route.delete('/:id', courseController.deleteCourseById); 
 
 module.exports = route;

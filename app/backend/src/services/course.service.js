@@ -55,9 +55,26 @@ const updateCourseById = async (id, updatedCourseDetails) => {
   }
 };
 
+const deleteCourseById = async (id) => {
+  try {
+    const deletedRowCount = await Course.destroy({
+      where: { id },
+    });
+
+    if (deletedRowCount === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'Course not found' } };
+    }
+
+    return { status: 'SUCCESSFUL', data: { message: 'Course deleted successfully' } };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
   createCourse,
   updateCourseById,
+  deleteCourseById,
 }
