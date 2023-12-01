@@ -77,6 +77,18 @@ const validateQuestion = (req, res, next) => {
   next();
 };
 
+const validateAnswer = (req, res, next) => {
+  const answer = req.body;
+  const requiredFields = ['question_id', 'answer_text'];
+
+  const areAllFieldsPresent = verifyFields(requiredFields, answer);
+  if (!areAllFieldsPresent) {
+    const errorMessage = 'Some required fields are missing for the answer';
+    return res.status(mapStatusHTTP('BAD_REQUEST')).json({ message: errorMessage });
+  }
+
+  next();
+};
 
 module.exports = {
   validateLogin,
@@ -84,4 +96,5 @@ module.exports = {
   validateCourse,
   validateCourseId,
   validateQuestion,
+  validateAnswer,
 };

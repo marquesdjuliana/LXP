@@ -53,6 +53,29 @@ const createQuestionForCourse = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const getAllAnswersForQuestion = async (req, res) => {
+  const { questionId } = req.params;
+
+  try {
+    const result = await courseService.getAllAnswersForQuestion(questionId);
+    if (result.status === 'NOT_FOUND') {
+      return res.status(404).json(result.data);
+    }
+    return res.status(200).json(result.data);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const createAnswerForQuestion = async (req, res) => {
+  const { id, questionId } = req.params;
+  const { body } = req;
+
+  const { status, data } = await courseService.createAnswerForQuestion(id, questionId, body);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
+
 module.exports = {
   listAllCourses,
   getCourseById,
@@ -60,5 +83,7 @@ module.exports = {
   updateCourseById,
   deleteCourseById,
   getAllQuestionsByCourseId,
-  createQuestionForCourse,  
+  createQuestionForCourse,
+  getAllAnswersForQuestion,
+  createAnswerForQuestion  
 }

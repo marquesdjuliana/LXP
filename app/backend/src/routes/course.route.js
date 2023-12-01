@@ -13,4 +13,7 @@ route.delete('/:id', courseController.deleteCourseById);
 route.get('/:id/questions', validateCourseId, courseController.getAllQuestionsByCourseId);
 route.post('/:id/questions', validateCourseId, validateQuestion, courseController.createQuestionForCourse);
 
+route.get('/:id/questions/:questionId/answers', validateCourseId, courseController.getAllAnswersForQuestion);
+route.post('/:id/questions/:questionId/answers', validateCourseId, courseController.createAnswerForQuestion);
+
 module.exports = route;

@@ -1,4 +1,4 @@
-const { Course, Question } = require('../models');
+const { Course, Question, Answer } = require('../models');
 
 const listAllCourses = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
@@ -93,6 +93,29 @@ const createQuestionForCourse = async (courseId, questionDetails) => {
   }
 };
 
+const getAllAnswersForQuestion = async (questionId) => {
+  const answers = await Answer.findAll({
+    where: {
+      question_id: questionId
+    }
+  });
+
+  return { status: 'SUCCESSFUL', data: answers };
+};
+
+const createAnswerForQuestion = async (courseId, questionId, answerDetails) => {
+  try {
+    answerDetails.course_id = courseId;
+    answerDetails.question_id = questionId;
+
+    const newAnswer = await Answer.create(answerDetails);
+    return { status: 'CREATED', data: newAnswer };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
+
+
 module.exports = {
   listAllCourses,
   getCourseById,
@@ -101,4 +124,6 @@ module.exports = {
   deleteCourseById,
   getAllQuestionsByCourseId,
   createQuestionForCourse,
+  getAllAnswersForQuestion,
+  createAnswerForQuestion,
 }
