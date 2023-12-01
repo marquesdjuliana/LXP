@@ -26,8 +26,24 @@ const getUserById = async (id) => {
   return { status: 'SUCCESSFUL', data: user };
 };
 
+const updateUser = async (id, updatedUserInfo) => {
+  const existingUser = await User.findByPk(id);
+
+  if (!existingUser) {
+    return { status: 'NOT_FOUND', data: { message: 'User not found' } };
+  }
+
+  try {
+    await existingUser.update(updatedUserInfo);
+    return { status: 'SUCCESSFUL', data: { message: 'User updated successfully' } };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: 'Failed to update user information' } };
+  }
+};
+
 module.exports = {
   listAllUsers,
   createUser,
   getUserById,
+  updateUser,
 }

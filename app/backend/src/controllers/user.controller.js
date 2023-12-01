@@ -18,9 +18,16 @@ const getUserById = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+  const { status, data } = await userService.updateUser(id, body);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
 
 module.exports = {
   listAllUsers,
   createUser,
   getUserById,
+  updateUser,
 }
