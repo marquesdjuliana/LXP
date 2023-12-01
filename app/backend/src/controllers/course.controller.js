@@ -17,7 +17,13 @@ const getCourseById = async (req, res) => {
 };
 
 
+const createCourse = async (req, res) => {
+  const { body } = req;
+  const { status, data } = await courseService.createCourse(body);
+  return res.status(mapStatusHTTP(status)).json(data);
+}
 module.exports = {
   listAllCourses,
-  getCourseById,  
+  getCourseById,
+  createCourse,  
 }

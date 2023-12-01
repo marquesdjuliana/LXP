@@ -1,6 +1,6 @@
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
 const { verifyFields } = require('../validations/verifyFields');
-const { userSchema } = require('../validations/schemas')
+const { userSchema, courseSchema } = require('../validations/schemas')
 
 const validateLogin = (req, res, next) => {
   const { email, password } = req.body;
@@ -29,7 +29,27 @@ const validateUser = (req, res, next) => {
   next();
 };
 
+const validateCourse = (req, res, next) => {
+  const course = req.body;
+  const requiredFields = ['title', 'duration', 'professor_id'];
+
+  const areAllFieldsPresent = verifyFields(requiredFields, course);
+  if (!areAllFieldsPresent) {
+    const errorMessage = 'Some required fields are missing';
+    return res.status(mapStatusHTTP('BAD_REQUEST')).json({ message: errorMessage });
+  }
+
+  const { error } = courseSchema.validate(course);
+  if (error) {
+    return res.status(mapStatusHTTP('BAD_REQUEST')).json({ message: error.message });
+  }
+
+  next();
+};
+
+
 module.exports = {
   validateLogin,
   validateUser,
+  validateCourse,
 };

@@ -7,6 +7,13 @@ const userSchema = Joi.object({
   password: Joi.string().min(6).required(),
 });
 
+const courseSchema = Joi.object({
+  title: Joi.string().required(),
+  duration: Joi.string().required(),
+  professor_id: Joi.number().integer().required(),
+});
+
 module.exports = {
   userSchema,
+  courseSchema,
 };

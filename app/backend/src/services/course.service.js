@@ -20,7 +20,7 @@ const getCourseById = async (id) => {
   // });
 
   const course = await Course.findByPk(id);
-  
+
   if (!course) {
     return { status: 'NOT_FOUND', data: { message: 'Course not found' } };
   }
@@ -28,7 +28,17 @@ const getCourseById = async (id) => {
   return { status: 'SUCCESSFUL', data: course };
 };
 
+const createCourse = async (courseDetails) => {
+  try {
+    const newCourse = await Course.create(courseDetails);
+    return { status: 'CREATED', data: newCourse };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
+  createCourse,
 }
