@@ -22,8 +22,18 @@ const createCourse = async (req, res) => {
   const { status, data } = await courseService.createCourse(body);
   return res.status(mapStatusHTTP(status)).json(data);
 }
+
+const updateCourseById = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+
+  const { status, data } = await courseService.updateCourseById(id, body);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
-  createCourse,  
+  createCourse,
+  updateCourseById,  
 }

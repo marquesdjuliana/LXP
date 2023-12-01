@@ -37,8 +37,27 @@ const createCourse = async (courseDetails) => {
   }
 };
 
+const updateCourseById = async (id, updatedCourseDetails) => {
+  try {
+    const [updatedRowsCount] = await Course.update(updatedCourseDetails, {
+      where: { id },
+    });
+
+    if (updatedRowsCount === 0) {
+      return { status: 'NOT_FOUND', data: { message: 'Course not found' } };
+    }
+
+    const updatedCourse = await Course.findByPk(id);
+
+    return { status: 'SUCCESSFUL', data: updatedCourse };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
   createCourse,
+  updateCourseById,
 }
