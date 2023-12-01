@@ -41,9 +41,20 @@ const updateUser = async (id, updatedUserInfo) => {
   }
 };
 
+const deleteUserById = async (id) => {
+  const user = await User.findByPk(id);
+  if (!user) {
+    return { status: 'NOT_FOUND', data: { message: 'User does not exist' } };
+  }
+
+  await User.destroy({ where: { id } });
+  return { status: 'SUCCESSFUL', data: { message: 'User deleted successfully' } };
+};
+
 module.exports = {
   listAllUsers,
   createUser,
   getUserById,
   updateUser,
+  deleteUserById,
 }
