@@ -82,6 +82,17 @@ const getAllQuestionsByCourseId = async (courseId) => {
   return { status: 'SUCCESSFUL', data: questions };
 };
 
+const createQuestionForCourse = async (courseId, questionDetails) => {
+  try {
+    questionDetails.course_id = courseId;
+    
+    const newQuestion = await Question.create(questionDetails);
+    return { status: 'CREATED', data: newQuestion };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
+
 module.exports = {
   listAllCourses,
   getCourseById,
@@ -89,4 +100,5 @@ module.exports = {
   updateCourseById,
   deleteCourseById,
   getAllQuestionsByCourseId,
+  createQuestionForCourse,
 }

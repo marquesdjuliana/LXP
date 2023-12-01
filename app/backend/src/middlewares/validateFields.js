@@ -63,10 +63,25 @@ const validateCourseId = async (req, res, next) => {
   next();
 };
 
+const validateQuestion = (req, res, next) => {
+  const question = req.body;
+  const requiredFields = ['user_id', 'question_text'];
+  
+  const areAllFieldsPresent = verifyFields(requiredFields, question);
+  if (!areAllFieldsPresent) {
+    const errorMessage = 'Some required fields are missing for the question';
+    return res.status(mapStatusHTTP('BAD_REQUEST')).json({ message: errorMessage });
+  }
+
+
+  next();
+};
+
 
 module.exports = {
   validateLogin,
   validateUser,
   validateCourse,
   validateCourseId,
+  validateQuestion,
 };

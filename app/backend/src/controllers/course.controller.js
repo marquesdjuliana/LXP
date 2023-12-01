@@ -45,6 +45,13 @@ const getAllQuestionsByCourseId = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const createQuestionForCourse = async (req, res) => {
+  const { id } = req.params;
+  const { body } = req;
+
+  const { status, data } = await courseService.createQuestionForCourse(id, body);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
 
 module.exports = {
   listAllCourses,
@@ -52,5 +59,6 @@ module.exports = {
   createCourse,
   updateCourseById,
   deleteCourseById,
-  getAllQuestionsByCourseId  
+  getAllQuestionsByCourseId,
+  createQuestionForCourse,  
 }
