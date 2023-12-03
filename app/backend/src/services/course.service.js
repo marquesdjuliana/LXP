@@ -10,14 +10,6 @@ const listAllCourses = async (page = 1, pageSize = 10) => {
 };
 
 const getCourseById = async (id) => {
-  // const course = await Course.findByPk(id, {
-  //   include: [
-  //     {
-  //       model: Question,
-  //       include: [Answer],
-  //     },
-  //   ],
-  // });
 
   const course = await Course.findByPk(id);
 
@@ -115,6 +107,14 @@ const createAnswerForQuestion = async (courseId, questionId, answerDetails) => {
   }
 };
 
+const getCoursesByProfessorId = async (professorId) => {
+  try {
+    const professorCourses = await Course.findAll({ where: { professor_id: professorId } });
+    return { status: 'SUCCESSFUL', data: professorCourses };
+  } catch (error) {
+    return { status: 'BAD_REQUEST', data: { message: error.message } };
+  }
+};
 
 module.exports = {
   listAllCourses,
@@ -126,4 +126,5 @@ module.exports = {
   createQuestionForCourse,
   getAllAnswersForQuestion,
   createAnswerForQuestion,
+  getCoursesByProfessorId,
 }

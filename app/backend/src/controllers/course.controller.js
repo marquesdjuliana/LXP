@@ -75,6 +75,16 @@ const createAnswerForQuestion = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+const getCoursesByProfessorId = async (req, res) => {
+  const { id: professorId } = req.params;
+
+  try {
+    const professorCourses = await courseService.getCoursesByProfessorId(professorId);
+    return res.status(mapStatusHTTP(professorCourses.status)).json(professorCourses.data);
+  } catch (error) {
+    return res.status(500).json({ message: 'Internal server error' });
+  }
+};
 
 module.exports = {
   listAllCourses,
@@ -85,5 +95,6 @@ module.exports = {
   getAllQuestionsByCourseId,
   createQuestionForCourse,
   getAllAnswersForQuestion,
-  createAnswerForQuestion  
+  createAnswerForQuestion,
+  getCoursesByProfessorId  
 }

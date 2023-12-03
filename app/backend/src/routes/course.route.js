@@ -1,11 +1,14 @@
 const route = require('express').Router();
 const { courseController } = require('../controllers');
-const { validateCourse, validateCourseId, validateQuestion } = require('../middlewares/validateFields')
+const { validateCourse, validateCourseId, validateQuestion } = require('../middlewares/validateFields');
+const validateToken = require('../middlewares/validateToken');
 
 
 
 route.get('/', courseController.listAllCourses);
 route.get('/:id', courseController.getCourseById);
+route.get('/:id/courses-professor', validateToken, courseController.getCoursesByProfessorId);
+
 route.post('/', validateCourse, courseController.createCourse);
 route.put('/:id', validateCourse, courseController.updateCourseById);
 route.delete('/:id', courseController.deleteCourseById);

@@ -1,0 +1,41 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5; 
+}
+
+/* Estilização para o conteúdo do login (inputs e botão) */
+.login-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Estilização para os inputs do login */
+.login-input {
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 250px;
+}
+
+/* Estilização para o botão do login */
+.login-button {
+  padding: 10px 20px;
+  background-color: #4caf50; /* Cor do botão */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+}
+
+/* Estilização para a mensagem de erro */
+.error-message {
+  color: #b01726;
+  font-size: 14px;
+  text-align: center;
+}

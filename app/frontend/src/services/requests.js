@@ -8,7 +8,7 @@ export const setToken = (token) => {
   api.defaults.headers.common.Authorization = `Bearer ${token}`;
 };
 
-export const requestData = async (endpoint) => {
+export const requestRole = async (endpoint) => {
   const { data } = await api.get(endpoint);
   return data;
 };
