@@ -7,6 +7,21 @@ const verifyUser = async (req, res) => {
   return res.status(mapStatusHTTP(status)).json(data);
 };
 
+
+const getUserRole = async (req, res) => {
+  const { email }  = res.locals.user;
+
+  const { status, data } = await  loginService.getUserRole(email);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
+
+// const getUserRole = async (req, res) => {
+//   const { id } = req.params;
+//   const { status, data } = await loginService.getUserRole(id);
+//   return res.status(mapStatusHTTP(status)).json(data);
+// };
+
 module.exports = {
   verifyUser,
+  getUserRole,
 };

@@ -12,6 +12,23 @@ const verifyUser = async (params) => {
   return { status: 'SUCCESSFUL', data: { token } };
 };
 
+const getUserRole = async (email) => {
+  const user = await User.findOne({ where: { email } });
+  if (!user) {
+    return { status: 'BAD_REQUEST', data: { message: 'User not found' } };
+  }
+  return { status: 'SUCCESSFUL', data: { role: user.role } };
+};
+
+// const getUserRole = async (id) => {
+//   const user = await User.findByPk(id, { attributes: { exclude: ['password'] } });
+//   if (!user) {
+//     return { status: 'BAD_REQUEST', data: { message: 'User not found' } };
+//   }
+//   return { status: 'SUCCESSFUL', data: { role: user.role } };
+// };
+
 module.exports = {
   verifyUser,
+  getUserRole,
 };
