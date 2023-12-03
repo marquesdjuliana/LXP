@@ -8,7 +8,10 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [failedTryLogin, setFailedTryLogin] = useState(false);
   const navigate = useNavigate();
-  const login = async () => {
+
+  const handleSubmit = async (event) => {
+    event.preventDefault(); // Evita o comportamento padrão de recarregar a página
+
     try {
       const { token } = await requestLogin("/login", { email, password });
       setToken(token);
@@ -29,7 +32,7 @@ const Login = () => {
 
   return (
     <div className="login-container">
-      <div className="login-content">
+      <form className="login-content" onSubmit={handleSubmit}>
         <input
           className="login-input"
           type="text"
@@ -44,14 +47,13 @@ const Login = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button className="login-button" onClick={() => login()}>
+        <button type="submit" className="login-button">
           Entrar
         </button>
-      </div>
+      </form>
       {failedTryLogin && (
         <p className="error-message">
-          O endereço de e-mail ou a senha não estão corretos. Por favor, tente
-          novamente.
+          O endereço de e-mail ou a senha não estão corretos. Por favor, tente novamente.
         </p>
       )}
     </div>
