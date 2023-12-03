@@ -25,7 +25,7 @@
 /* Estilização para o botão do login */
 .login-button {
   padding: 10px 20px;
-  background-color: #4caf50; /* Cor do botão */
+  background-color: #4caaaf; /* Cor do botão */
   color: white;
   border: none;
   border-radius: 5px;
@@ -33,9 +33,3 @@
   width: 150px;
 }
 
-/* Estilização para a mensagem de erro */
-.error-message {
-  color: #b01726;
-  font-size: 14px;
-  text-align: center;
-}
