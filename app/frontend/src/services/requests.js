@@ -18,17 +18,13 @@ export const requestLogin = async (endpoint, body) => {
   return data;
 };
 
-// export const makeRequest = async (method, endpoint, body = null) => {
-//   try {
-//     const config = {
-//       method,
-//       url: endpoint,
-//       data: body,
-//     };
 
-//     const { data } = await api.request(config);
-//     return data;
-//   } catch (error) {
-//     throw new Error(error.response.data.message || 'Something went wrong');
-//   }
-// };
+export const requestCourses = async (page = 1, pageSize = 10) => {
+  try {
+    const response = await api.get(`/courses?page=${page}&pageSize=${pageSize}`);
+    return response.data;
+  } catch (error) {
+    throw new Error('Failed to fetch courses');
+  }
+};
+
