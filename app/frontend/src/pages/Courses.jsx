@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { useLocation, Link } from 'react-router-dom';
-import { requestCourses } from '../services/requests';
-import { Container, Box, Typography, Paper, Button } from '@mui/material';
+import React, { useEffect, useState } from "react";
+import { useLocation, Link } from "react-router-dom";
+import { requestCourses } from "../services/requests";
+import { Container, Box, Typography, Paper, Button } from "@mui/material";
+import backgroundImage from "../images/lxp-student.jpg";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
@@ -19,8 +20,8 @@ const Courses = () => {
 
   useEffect(() => {
     const queryParams = new URLSearchParams(location.search);
-    const page = queryParams.get('page') || 1;
-    const pageSize = queryParams.get('pageSize') || 10;
+    const page = queryParams.get("page") || 1;
+    const pageSize = queryParams.get("pageSize") || 10;
 
     setCurrentPage(page);
     getCoursesData(page, pageSize);
@@ -43,32 +44,73 @@ const Courses = () => {
   };
 
   return (
-    <Container maxWidth="md" style={{ marginTop: 300 }}>
-      <Paper elevation={3} style={{ backgroundColor: '#ADD8E6', padding: 40 }}>
-        <ul style={{ listStyleType: 'none', padding: 0 }}>
-          {courses.map((course) => (
-            <li key={course.id} style={{ marginBottom: 20 }}>
-              <Paper elevation={1} style={{ backgroundColor: 'white', padding: 10 }}>
-                <Link to={`/course-details/${course.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                  <Typography variant="h5" gutterBottom>
-                    Title: {course.title}
-                  </Typography>
-                </Link>
-                <Typography variant="body1">Duration: {course.duration}</Typography>
-              </Paper>
-            </li>
-          ))}
-        </ul>
-        <Box mt={4} display="flex" justifyContent="center">
-          <Button variant="contained" color="primary" onClick={handlePreviousPage}>
-            Previous
-          </Button>
-          <Button variant="contained" color="primary" onClick={handleNextPage} style={{ marginLeft: 10 }}>
-            Next
-          </Button>
-        </Box>
-      </Paper>
-    </Container>
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+        minHeight: "100vh",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Container
+       style={{
+        marginRight: 0,
+        marginLeft: "auto",
+      }}
+      >
+        <Container maxWidth="md">
+          <Paper
+            elevation={3}
+            style={{ backgroundColor: "rgba(173, 216, 230, 0.3)", padding: 40 }}
+          >
+            <ul style={{ listStyleType: "none", padding: 0 }}>
+              {courses.map((course) => (
+                <li key={course.id} style={{ marginBottom: 20 }}>
+                  <Paper
+                    elevation={1}
+                    style={{
+                      padding: 10,
+                      backgroundColor: "rgba(173, 216, 230, 0.5)",
+                    }}
+                  >
+                    <Link
+                      to={`/course-details/${course.id}`}
+                      style={{ textDecoration: "none", color: "inherit" }}
+                    >
+                      <Typography variant="h5" gutterBottom>
+                        Curso: {course.title}
+                      </Typography>
+                    </Link>
+                    <Typography variant="body1">
+                      Carga horária: {course.duration}
+                    </Typography>
+                  </Paper>
+                </li>
+              ))}
+            </ul>
+            <Box mt={4} display="flex" justifyContent="center">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handlePreviousPage}
+              >
+                voltar
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleNextPage}
+                style={{ marginLeft: 10 }}
+              >
+                próximo
+              </Button>
+            </Box>
+          </Paper>
+        </Container>
+      </Container>
+    </div>
   );
 };
 

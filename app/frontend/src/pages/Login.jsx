@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { requestLogin, setToken, requestRole } from "../services/requests";
 import { useNavigate } from "react-router-dom";
+import logo from "../images/logo.png";
 import {
   Dialog,
   DialogTitle,
@@ -30,13 +31,15 @@ const Login = () => {
     try {
       const { token } = await requestLogin("/login", { email, password });
       setToken(token);
-  
-      const { role: userRole, userId: userId } = await requestRole("/login/role");
-      
+
+      const { role: userRole, userId: userId } = await requestRole(
+        "/login/role"
+      );
+
       localStorage.setItem("token", token);
       localStorage.setItem("role", userRole);
       localStorage.setItem("userId", userId);
-  
+
       if (userRole === "student") {
         navigate("/courses");
       } else if (userRole === "professor") {
@@ -53,21 +56,28 @@ const Login = () => {
       <Box
         sx={{
           marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
-          Sign in
-        </Typography>
+        <img
+          src={logo}
+          alt="LXP Logo"
+          style={{
+            marginBottom: 20,
+            borderRadius: "50%",
+            width: 150,
+            height: 150,
+          }}
+        />
         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
           <TextField
             margin="normal"
             required
             fullWidth
             id="email"
-            label="Email Address"
+            label="E-mail"
             name="email"
             autoComplete="email"
             autoFocus
@@ -79,7 +89,7 @@ const Login = () => {
             required
             fullWidth
             name="password"
-            label="Password"
+            label="Senha"
             type="password"
             id="password"
             autoComplete="current-password"
@@ -90,7 +100,7 @@ const Login = () => {
             type="submit"
             fullWidth
             variant="contained"
-            sx={{ mt: 3, mb: 2, bgcolor: '#4caaaf', color: 'white' }}
+            sx={{ mt: 3, mb: 2, bgcolor: "#4caaaf", color: "white" }}
           >
             Sign In
           </Button>
@@ -100,7 +110,8 @@ const Login = () => {
         <DialogTitle>Erro de Login</DialogTitle>
         <DialogContent>
           <Typography variant="body1">
-            O endereço de e-mail ou a senha não estão corretos. Por favor, tente novamente.
+            O endereço de e-mail ou a senha não estão corretos. Por favor, tente
+            novamente.
           </Typography>
         </DialogContent>
         <DialogActions>

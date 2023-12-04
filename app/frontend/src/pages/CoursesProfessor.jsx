@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { requestCoursesForProfessor } from '../services/requests';
 import { Container, Box, Typography, Paper, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
+import backgroundImages from '../images/lxpa.jpeg';
 
 const CoursesProfessor = () => {
   const [courses, setCourses] = useState([]);
