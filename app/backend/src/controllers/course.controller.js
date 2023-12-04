@@ -1,8 +1,6 @@
 const { courseService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
  
-
-
 const getCourses = async (req, res) => {
   const { page, pageSize } = req.query;
 
