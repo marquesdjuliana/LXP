@@ -8,6 +8,16 @@ const listAllCourses = async (page = 1, pageSize = 10) => {
   });
   return { status: 'SUCCESSFUL', data: courses };
 };
+//TESTE
+const getCourses = async (page = 1, pageSize = 10) => {
+  const offset = (page - 1) * pageSize;
+  const courses = await Course.findAll({
+    offset,
+    limit: parseInt(pageSize),
+  });
+  return { status: 'SUCCESSFUL', data: courses };
+};
+
 
 const getCourseById = async (id) => {
 
@@ -127,4 +137,5 @@ module.exports = {
   getAllAnswersForQuestion,
   createAnswerForQuestion,
   getCoursesByProfessorId,
+  getCourses
 }

@@ -8,7 +8,13 @@ const listAllCourses = async (req, res) => {
   const { status, data } = await courseService.listAllCourses(page, pageSize);
   return res.status(mapStatusHTTP(status)).json(data);
 };
+//TESTE:
+const getCourses = async (req, res) => {
+  const { page, pageSize } = req.query;
 
+  const { status, data } = await courseService.getCourses(page, pageSize);
+  return res.status(mapStatusHTTP(status)).json(data);
+};
 const getCourseById = async (req, res) => {
   const { id } = req.params;
 
@@ -96,5 +102,6 @@ module.exports = {
   createQuestionForCourse,
   getAllAnswersForQuestion,
   createAnswerForQuestion,
-  getCoursesByProfessorId  
+  getCoursesByProfessorId,
+  getCourses  
 }

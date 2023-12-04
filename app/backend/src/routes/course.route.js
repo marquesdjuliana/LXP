@@ -5,7 +5,9 @@ const validateToken = require('../middlewares/validateToken');
 
 
 
-route.get('/', courseController.listAllCourses);
+// route.get('/', courseController.listAllCourses);
+route.get('/', courseController.getCourses);
+
 route.get('/:id', courseController.getCourseById);
 route.get('/:id/courses-professor', validateToken, courseController.getCoursesByProfessorId);
 
