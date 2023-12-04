@@ -10,11 +10,13 @@ export const setToken = (token) => {
 
 export const requestRole = async (endpoint) => {
   const { data } = await api.get(endpoint);
+  console.log(data);
   return data;
 };
 
 export const requestLogin = async (endpoint, body) => {
   const { data } = await api.post(endpoint, body);
+  console.log(data);
   return data;
 };
 
@@ -28,3 +30,15 @@ export const requestCourses = async (page = 1, pageSize = 10) => {
   }
 };
 
+export const requestCoursesForProfessor = async (professorId) => {
+  try {
+    const { data } = await api.get(`/courses/${professorId}/courses-professor`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+    return data;
+  } catch (error) {
+    throw new Error('Failed to fetch courses for professor');
+  }
+};;

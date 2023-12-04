@@ -2,13 +2,7 @@ const { courseService } = require('../services');
 const mapStatusHTTP = require('../utils/mapStatusHTTP');
  
 
-const listAllCourses = async (req, res) => {
-  const { page, pageSize } = req.query;
 
-  const { status, data } = await courseService.listAllCourses(page, pageSize);
-  return res.status(mapStatusHTTP(status)).json(data);
-};
-//TESTE:
 const getCourses = async (req, res) => {
   const { page, pageSize } = req.query;
 
@@ -93,7 +87,6 @@ const getCoursesByProfessorId = async (req, res) => {
 };
 
 module.exports = {
-  listAllCourses,
   getCourseById,
   createCourse,
   updateCourseById,

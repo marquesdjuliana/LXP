@@ -17,7 +17,7 @@ const getUserRole = async (email) => {
   if (!user) {
     return { status: 'BAD_REQUEST', data: { message: 'User not found' } };
   }
-  return { status: 'SUCCESSFUL', data: { role: user.role } };
+  return { status: 'SUCCESSFUL', data: { role: user.role, userId: user.id } };
 };
 
 // const getUserRole = async (id) => {

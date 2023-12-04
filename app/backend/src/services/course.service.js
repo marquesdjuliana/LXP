@@ -1,14 +1,5 @@
 const { Course, Question, Answer } = require('../models');
 
-const listAllCourses = async (page = 1, pageSize = 10) => {
-  const offset = (page - 1) * pageSize;
-  const courses = await Course.findAll({
-    offset,
-    limit: parseInt(pageSize),
-  });
-  return { status: 'SUCCESSFUL', data: courses };
-};
-//TESTE
 const getCourses = async (page = 1, pageSize = 10) => {
   const offset = (page - 1) * pageSize;
   const courses = await Course.findAll({
@@ -127,7 +118,6 @@ const getCoursesByProfessorId = async (professorId) => {
 };
 
 module.exports = {
-  listAllCourses,
   getCourseById,
   createCourse,
   updateCourseById,
