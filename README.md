@@ -1,16 +1,18 @@
 # LXP - Learning Experience Platform
 
-A Plataforma de Aprendizado é uma plataforma simplificada de Experiência de Aprendizado (LXP) que tem como objetivo facilitar a interação entre alunos e professores, permitindo o registro de cursos, perguntas de alunos e respostas de professores.
+#### Este projeto está em desenvolvimento.
+ 
+ A proposta é desenvolver uma versão simplificada de uma Learning Experience Platform (LXP). O principal objetivo facilitar a interação de dúvidas e respostas entre professor e estudante. A aplicação permitirá o registro de usários, cursos, perguntas de estudantes e respostas de professores.
 
 ## Contexto
 
-O professor desempenha um papel central na plataforma, envolvendo-se na produção de conteúdo e no atendimento às dúvidas dos alunos. Um curso está vinculado a um professor, e os alunos podem enviar perguntas relacionadas aos cursos para seus respectivos professores.
+O professor desempenha um papel central na plataforma, envolvendo-se na produção de conteúdo e no atendimento às dúvidas dos estudantes. Um curso está vinculado a um professor, e os estudantes podem enviar perguntas relacionadas aos cursos para seus respectivos professores.
 
 ## Funcionalidades Principais
 
-- **Registro de Usuários e Cursos:** A plataforma permite o registro de usuários (alunos, professores e admins) e a criação de cursos, incluindo título, duração e professor responsável.
+- **Registro de Usuários e Cursos:** A plataforma permite o registro de usuários (estudantes, professores e admins), a criação de cursos.
   
-- **Perguntas e Respostas:** Os alunos podem enviar perguntas sobre os cursos, e os professores têm a capacidade de responder a essas perguntas.
+- **Perguntas e Respostas:** Os estudantes podem enviar perguntas sobre os cursos, e os professores têm a capacidade de responder a essas perguntas.
 
 - **Pagamentos aos Professores:** Um admin pode registrar os pagamentos aos professores, considerando a remuneração por hora de curso disponibilizado e por pergunta respondida.
 
