@@ -1,8 +1,11 @@
 # LXP - Learning Experience Platform
 
-#### Este projeto está em desenvolvimento.
- 
- A proposta é desenvolver uma versão simplificada de uma Learning Experience Platform (LXP). O principal objetivo facilitar a interação de dúvidas e respostas entre professor e estudante. A aplicação permitirá o registro de usários, cursos, perguntas de estudantes e respostas de professores.
+## Descrição
+A proposta é desenvolver uma versão simplificada de uma Learning Experience Platform (LXP). O principal objetivo facilitar a interação de dúvidas e respostas entre professor e estudante. A aplicação permitirá o registro de usários, cursos, perguntas de estudantes e respostas de professores.
+
+#### Status do Projeto: 
+Este projeto está em desenvolvimento 🚧 <br>
+Caso encontre algum problema ou tenha dúvidas, sinta-se à vontade para me contatar :)
 
 ## Contexto
 
