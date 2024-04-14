@@ -31,7 +31,7 @@ Se deseja experimentar o projeto em sua máquina local, siga estas etapas:
 
 1. Clone o repositório:
 ```sh
-git clone git@github.com:marquesdjuliana/LXP
+git clone git@github.com:marquesdjuliana/LXP.git
 ```
 2. Entre na pasta do repositório:
 ```sh
